@@ -19,12 +19,20 @@ $('#get-fortune-button').on('click', showFortune);
 
 // PART 2: SHOW WEATHER
 
+function replaceWeather(weather){
+	//get forecast from weather
+	var our_forecast = weather["forecast"];
+	$("#weather-info").html(our_forecast);
+	}
+
 function showWeather(evt) {
     evt.preventDefault();
 
-    var url = "/weather?zipcode=" + $("#zipcode-field").val();
+    var url = "/weather.json?zipcode=" + $("#zipcode-field").val();
 
     // TODO: request weather with that URL and show the forecast in #weather-info
+    $.get(url, replaceWeather);
+
 }
 
 $("#weather-form").on('submit', showWeather);
